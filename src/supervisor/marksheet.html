@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proposal</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <script src="../libraries/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <a class="logo" href="#">FYP Planner</a>
+
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a class="nav-btn" href="index.html">Home</a></li>
+                        <li><a class="nav-btn" href="proposal.html">Proposal</a></li>
+                        <li><a class="nav-btn" href="project.html">Project</a></li>
+                        <li><a class="nav-btn" href="meeting.html">Meeting</a></li>
+                        <li><a class="nav-btn current" href="marksheet.html">Marksheet</a></li>           
+                    </ul>
+                </nav>
+
+                <div class="right-menu desktop-nav">
+                    <nav>
+                        <ul>
+                            <li><a href="#"><img src="../assets/profile.svg" alt="user_profile"></a></li>
+                            <li><a href="#"><img src="../assets/logout.svg" alt="user_profile"></a></li>
+                        </ul>
+                    </nav>
+                </div>
+        </div>
+
+        <img id="mobile-menu" class="mobile-menu" src="../assets/menu.svg"> 
+        <div class="mobile-nav">
+            <nav>
+                <img id="mobile-exit" src="../assets/exit.svg">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Proposal</a></li>
+                    <li><a href="#">Project</a></li>
+                    <li><a href="#">Meeting</a></li>
+                    <li><a href="#">Marksheet</a></li> 
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <script src="../js/open_nav.js"></script>
+
+    <div class="detail-container">
+        <div class="table-detail">
+            <div class="header">
+                <h2>Project Marksheet</h2>
+            </div>
+            <div class="nav-1">
+                <ul>
+                    <li class="btn-2 current">Current Project</li>
+                    <li class="btn-2">History</li>
+                </ul>
+            </div>
+            <div class="pagination">
+                <ul>
+                    <li><span class="first">&larr; Prev</span></li>
+                    <li><span>1</span></li>
+                    <li>...</li>
+                    <li><span>13</span></li>
+                    <li><span class="current">14</span></li>
+                    <li><span>15</span></li>
+                    <li>...</li>
+                    <li><span>20</span></li>
+                    <li><span class="last">Next &rarr;</span></li>
+                </ul>
+            </div>
+            <table class="table-1">
+                <!-- Test Data -->
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Student</th>
+                        <th>Student ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Face Recognisation System</td>
+                        <td>Alvin</td>
+                        <td>1191112345</td>
+                        <td><button class="btn-1 mark-project">Mark</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Face Recognisation System</td>
+                        <td>Alvin</td>
+                        <td>1191112345</td>
+                        <td><button class="btn-1 mark-project">Mark</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="exit-background hidden">
+        <div class="form-container">
+            <div class="wrap">
+                <form class="login-form">
+                    <div class="header">
+                        <h2>Mark the project</h2>
+                        <img class="exit-btn" src="../assets/exit-2.svg" alt="exit">
+                    </div>
+                    <div class="project-detail">
+                        <div><label>Project ID: </label><span>1</span></div>
+                        <div><label>Project Title: </label><span>Face Recognisation System</span></div>
+                    </div>
+                    <span class="message"><img src="assets/error.svg"><span></span></span>
+                    <div class="input-field">
+                        <label>Mark</label>
+                        <input type="number" name="mark" min="0" max="100">
+                    </div>
+                    <div class="input-field">
+                        <label>Comment</label>
+                        <textarea  name="description" rows="5" cols="50" placeholder="Write your comment here*"></textarea>
+                    </div>
+
+                    <div class="form-btn">
+                        <input class="btn-1" type="submit" value="add">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../js/window_prompt.js"></script>
+</body>
+</html>
