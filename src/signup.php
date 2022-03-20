@@ -8,6 +8,9 @@
 	<script src="libraries/jquery-3.2.1.min.js"></script>
 </head>
 <body>
+    <?php
+        include("menubar.php");
+    ?>
     <div class="form-container">
 		<div class="wrap">
 			<form class="signup-form" method="POST" autocomplete="off">

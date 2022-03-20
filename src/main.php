@@ -7,18 +7,9 @@
     <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
-    <div class="navbar-index">
-        <div class="container">
-            <a class="logo" href="#">FYP Planner</a>
-
-            <nav>
-                <ul>
-                    <li><a class="nav-btn" href="login.php">Log In</a></li>
-                    <li><a class="btn-2" href="signup.php">SIGN UP</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
+    <?php
+        include("menubar.php");
+    ?>
 
     <section class="banner">
         <div class="container">

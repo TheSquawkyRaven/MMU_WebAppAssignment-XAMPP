@@ -9,6 +9,6 @@ function redirect($url) {
     die();
 }
 
-redirect("src/index.php");
+redirect("src/main.php");
 
 ?>

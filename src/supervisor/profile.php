@@ -18,7 +18,7 @@
             </div>
             <div class="user-profile">
                 <!-- Test Data -->
-                <label>Name: </label><span>Test</span>
+                <label>Name: </label><span><?php session_start(); echo($_SESSION["name"]); ?></span>
             </div>
         </div>
     </div>

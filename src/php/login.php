@@ -23,6 +23,7 @@
             $_SESSION['id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['type'] = $type;
+            $_SESSION['name'] = $user['name'];
 
             echo $type;
         }else {
