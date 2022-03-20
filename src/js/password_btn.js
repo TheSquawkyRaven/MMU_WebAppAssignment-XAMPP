@@ -1,6 +1,6 @@
 var show = 0;
 
-$('#btn-see').on('click', function(){
+$('#btn-see').on('click', function() {
     var password = $('input[name=password]');
     var img = $('.input-side-btn img');
 
