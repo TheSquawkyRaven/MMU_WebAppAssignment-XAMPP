@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <?php require '../include/supervisor-navbar.inc.php'; ?>
+    <?php require '../include/user-navbar.inc.php'; ?>
 
     <div class="detail-container">
         <div class="table-detail">

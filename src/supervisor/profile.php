@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 </head>
 <body>
 
-    <?php require '../include/supervisor-navbar.inc.php'; ?>
+    <?php require '../include/user-navbar.inc.php'; ?>
 
     <div class="detail-container">
         <div class="table-detail">
@@ -18,7 +19,7 @@
             </div>
             <div class="user-profile">
                 <!-- Test Data -->
-                <label>Name: </label><span><?php session_start(); echo($_SESSION["name"]); ?></span>
+                <label>Name: </label><span><?php echo($_SESSION["name"]); ?></span>
             </div>
         </div>
     </div>

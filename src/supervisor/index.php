@@ -12,7 +12,7 @@
     <script src="../libraries/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-    <?php require '../include/supervisor-navbar.inc.php'; ?>
+    <?php require '../include/user-navbar.inc.php'; ?>
 
     
     <section>

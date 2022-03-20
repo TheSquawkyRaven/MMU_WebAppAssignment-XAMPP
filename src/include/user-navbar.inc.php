@@ -8,14 +8,14 @@
                         <li><a class="nav-btn" href="proposal.php">Proposal</a></li>
                         <li><a class="nav-btn" href="project.php">Project</a></li>
                         <li><a class="nav-btn" href="meeting.php">Meeting</a></li>
-                        <li><a class="nav-btn" href="marksheet.php">Marksheet</a></li>           
+                        <li><a class="nav-btn" href="marksheet.php">Marksheet</a></li>
                     </ul>
                 </nav>
 
                 <div class="right-menu desktop-nav">
                     <nav>
                         <ul>
-                            <li><a href="profile.php"><img src="../assets/profile.svg" alt="user_profile"></a></li>
+                            <li><a href="profile.php"><img src="../assets/profile.svg" alt="user_profile"><?php echo($_SESSION['name']); ?></a></li>
                             <li><a href="../php/logout.php"><img src="../assets/logout.svg" alt="user_profile"></a></li>
                         </ul>
                     </nav>
