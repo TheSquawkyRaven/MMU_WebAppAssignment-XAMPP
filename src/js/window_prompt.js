@@ -11,16 +11,20 @@ $('.exit-btn').on('click', function(e){
 });
 
 // Add Proposal Page
-$('#add-proposal').on('click', function(){
-    $('.exit-background').show();
+$('#add-proposal').on('click', function() {
+    $('.message').css('display', 'none');
+    $('.add-proposal').show();
 });
 
 // Project Planning
+/*
 $('.view-planning').on('click', function(){
     $('.exit-background').show();
 });
+*/
 
 // Meeting
+/*
 $('.view-meeting').on('click', function(){
     $('.meeting-container').show();
 });
@@ -28,13 +32,10 @@ $('.view-meeting').on('click', function(){
 $('.add-meeting').on('click', function(){
     $('.add-meeting-container').show();
 });
-
-// Mark
-$('.mark-project').on('click', function(){
-    $('.exit-background').show();
-});
+*/
 
 //Homepage
+/*
 $('#login').on('click', function(){
     $('.login-container').show();
     $('.message').css('display', 'none');
@@ -43,3 +44,4 @@ $('#signup').on('click', function(){
     $('.signup-container').show();
     $('.message').css('display', 'none');
 });
+*/

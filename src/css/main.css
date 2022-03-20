@@ -362,14 +362,28 @@ body {
 .form-container .wrap .message img{
     width: 18px;
     height: 18px;
-    filter: invert(34%) sepia(100%) saturate(7354%) hue-rotate(356deg) brightness(103%) contrast(118%);
 }
 
 .form-container .wrap .message span {
     padding-left: 0.25em;
-    color: red;
     position: relative;
     top: -3px;
+}
+
+.error img {
+    filter: invert(34%) sepia(100%) saturate(7354%) hue-rotate(356deg) brightness(103%) contrast(118%);
+}
+
+.error span {
+    color: red;
+}
+
+.success img {
+    filter: invert(41%) sepia(87%) saturate(2284%) hue-rotate(91deg) brightness(104%) contrast(106%);
+}
+
+.success span {
+    color: green;
 }
 
 /* Homepage Summary Styling */
