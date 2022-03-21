@@ -29,7 +29,7 @@
         while ($project = $projects->fetch_assoc()){
 
             $title = $project["Title"];
-            $desc = $proejct["Desc"];
+            $desc = $project["Desc"];
             $super = $project["SupervisorName"];
             $status = $project["Status"];
 
