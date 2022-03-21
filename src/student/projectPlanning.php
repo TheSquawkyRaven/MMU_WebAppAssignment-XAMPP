@@ -16,6 +16,34 @@
 
     <button class="btn-1" id="form-popup">Plan Project</button>
 
+    <!--Project Container-->
+    <div class="detail-container">
+        <div class="table-detail">
+            <div class="header">
+                <h2>Projects</h2>
+            </div>
+            <div class="pagination">
+                <ul>
+                    <li><span class="pagination-btn" value="prev">&larr; Prev</span></li>
+                    <li><span class="pagination-btn" value="1">1</span></li>
+                    <li>...</li>
+                    <li><span class="pagination-btn">13</span></li>
+                    <li><span class="pagination-btn current">14</span></li>
+                    <li><span class="pagination-btn">15</span></li>
+                    <li>...</li>
+                    <li><span class="pagination-btn">20</span></li>
+                    <li><span class="pagination-btn" value="next">&rarr; Next</span></li>
+                </ul>
+            </div>
+            <p>Help pagination thing lmao idk how to do it</p>
+            <table id="proposal-status" class="table-1">
+                <?php
+                    include("projectlist.php");
+                ?>
+            </table>
+        </div>
+    </div>
+
     <div class="exit-background form-popup hidden">
         <div class="form-container">
             <div class="wrap">
