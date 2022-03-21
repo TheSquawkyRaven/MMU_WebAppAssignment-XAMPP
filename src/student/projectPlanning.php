@@ -33,6 +33,9 @@
                         <textarea name="description" rows="5" cols="50" placeholder="Write your description here*"></textarea>
                     </div>
 
+                    <input type="hidden" name="studentID" value="<?php echo($_SESSION["id"]); ?>">
+                    <input type="hidden" name="supervisorID" value="<?php //TODO!! ?>">
+
                     <div class="form-btn">
                         <input class="btn-1" type="submit" value="propose">
                     </div>
