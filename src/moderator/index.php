@@ -14,6 +14,7 @@
 <body>
     <?php require '../include/user-navbar.inc.php'; ?>
 
+    <h2>MODERATOR: EMPTY</h2>
 
 </body>
 </html>

@@ -12,7 +12,7 @@
     ];
 
     $student_nav = [
-
+        "projectPlanning.php" => "Project Planning",
     ];
 
     $moderator_nav = [
