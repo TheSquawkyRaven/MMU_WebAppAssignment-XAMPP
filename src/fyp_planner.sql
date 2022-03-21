@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2022 at 11:48 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: Mar 21, 2022 at 08:15 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,8 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `moderator` (
   `id` int(11) NOT NULL,
   `username` varchar(30) NOT NULL,
-  `password` varchar(72) NOT NULL
+  `password` varchar(72) NOT NULL,
+  `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `moderator`
+--
+
+INSERT INTO `moderator` (`id`, `username`, `password`, `name`) VALUES
+(1, 'AdminMod', 'admin', 'Admin Moderator');
 
 -- --------------------------------------------------------
 
@@ -207,7 +215,8 @@ INSERT INTO `student` (`id`, `username`, `password`, `name`, `dob`, `state`) VAL
 (1, 'test1', '$2y$10$mf2WRYtAZEIvoD92Jf5MyeZW9FLm5Jru0/ti5wN1B1X1MGHsuTeOS', 'Test A', '2022-03-23', 1),
 (2, 'studenta', '$2y$10$Aurp.AUpf//y8JNtnLLIz.LWTjx0d3cIBZXNqM6YBwU3HjrMzSluC', 'Student A', '2022-03-24', 1),
 (3, '123', '$2y$10$/W2w9Xi8XHIZCzez1OWFpOD2y2MKZoeJe/U/O.JsYNSos1gxAWmxe', '123', '0003-03-12', 1),
-(4, '321', '$2y$10$fcjaUTt8OCWwD8NZjvFRN.sFK6f2UCJq.tdti.mbJDj57Ac7rsmWG', '123', '0023-03-12', 1);
+(4, '321', '$2y$10$fcjaUTt8OCWwD8NZjvFRN.sFK6f2UCJq.tdti.mbJDj57Ac7rsmWG', '123', '0023-03-12', 1),
+(6, 'AdminStud', '$2y$10$AhI7PSZqisPp75v9IgGgIOjCNiJJYGTISWdx4eeuolYdXWTs7P8V6', 'Admin Student', '0001-01-01', 1);
 
 -- --------------------------------------------------------
 
@@ -231,7 +240,8 @@ CREATE TABLE `supervisor` (
 
 INSERT INTO `supervisor` (`id`, `username`, `password`, `name`, `dob`, `rating`, `total_rating`) VALUES
 (1, 'SupervisorA', '$2y$10$yVnxpM0nP2pzIjUdObmTuubtsrkmVBUXiNUx7xpu3DBmO6xpAmA4C', 'Test Supervisor A', '2022-03-15', 0, 0),
-(2, 'SupervisorB', '$2y$10$c.jsmUjwEmr44Ku0iqlBne3xAC/OiIBjErQWRRuZWUbiENKqne6om', 'Supervisor B', '1980-10-18', 0, 0);
+(2, 'SupervisorB', '$2y$10$c.jsmUjwEmr44Ku0iqlBne3xAC/OiIBjErQWRRuZWUbiENKqne6om', 'Supervisor B', '1980-10-18', 0, 0),
+(4, 'AdminSuper', '$2y$10$8o.Y.DGrJpYtb/wZvcUaJ.pRXU/mzrn5GexIlAakM6AC4N8aJOo46', 'Admin Supervisor', '0001-01-01', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -307,7 +317,7 @@ ALTER TABLE `supervisor`
 -- AUTO_INCREMENT for table `moderator`
 --
 ALTER TABLE `moderator`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `project`
@@ -349,13 +359,13 @@ ALTER TABLE `project_registration`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `supervisor`
 --
 ALTER TABLE `supervisor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
