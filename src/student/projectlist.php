@@ -1,10 +1,10 @@
 <?php
 
     $projects = $con->query(
-    "SELECT project.id AS `ProjectID`, `title` AS 'Title', `description` AS 'Desc', student.name AS 'StudentName', supervisor.name AS 'SupervisorName', `status` AS 'Status' FROM `project`
-    INNER JOIN `student` ON student.id = project.student
-    INNER JOIN `supervisor` ON supervisor.id = project.supervisor
-    WHERE `student` = ".$_SESSION["id"]
+        "SELECT project.id AS `ProjectID`, `title` AS 'Title', `description` AS 'Desc', student.name AS 'StudentName', supervisor.name AS 'SupervisorName', `status` AS 'Status' FROM `project`
+        INNER JOIN `student` ON student.id = project.student
+        INNER JOIN `supervisor` ON supervisor.id = project.supervisor
+        WHERE `student` = ".$_SESSION["id"]
     );
 
     if ($projects->num_rows == 0){
@@ -43,7 +43,7 @@
             <td>$super</td>
             <td>$status</td>";
 
-            echo "<td><button class='btn-1' id='form-popup' type='submit' name='projectID' value='$projectID'>Select</button></td>";
+            echo "<td><button class='btn-1' type='submit' name='projectID' value='$projectID'>Select</button></td>";
             echo "</tr>";
             
             $i++;

@@ -12,7 +12,7 @@
     ];
 
     $student_nav = [
-        "projectPlanning.php" => "Project Planning",
+        "projectPlanningSelect.php" => "Project Planning",
     ];
 
     $moderator_nav = [
@@ -78,7 +78,7 @@
             $i = 1;
             $found = 0;
             foreach ($nav as $link => $title){
-                if ($found == 0 && basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']) == $link){
+                if ($found == 0 && str_contains($link, str_replace(".php", "", basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'])))){
                     echo $i;
                     $found = 1;
                 }

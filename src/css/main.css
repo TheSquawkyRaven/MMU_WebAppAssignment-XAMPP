@@ -235,6 +235,33 @@ body {
     color: #ffffff;
 }
 
+.space-left {
+    margin-left: 5em;
+}
+
+.inline {
+    display: inline;
+}
+
+.full{
+    width: 100%;
+    overflow: hidden;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+
+.space-vertical {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.space-bottom{
+    margin-bottom: 1em;
+}
+
 /* Login, Sign Up Form */
 .form-container {
     width: 100%;
@@ -430,10 +457,9 @@ body {
 }
 
 .detail-container {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: -999;
+    position: relative;
+    width: max-content;
+    margin: auto;
 }
 
 /* Table */

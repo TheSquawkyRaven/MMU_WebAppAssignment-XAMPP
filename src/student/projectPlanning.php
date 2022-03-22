@@ -9,26 +9,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <link rel="stylesheet" href="../css/main.css" />
-    <script src="../libraries/jquery-3.2.1.min.js"></script>
+    <!-- <script src="../libraries/jquery-3.2.1.min.js"></script> -->
+
+    <!-- External Calendar -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 <body>
     <?php require '../include/user-navbar.inc.php'; ?>
 
+    <?php
+        $projectSelected = 0;
+        if (!array_key_exists("projectID", $_POST)){
+            $projects = $con->query(
+                "SELECT project.id AS `ProjectID`, `title` AS 'Title', `description` AS 'Desc', student.name AS 'StudentName', supervisor.name AS 'SupervisorName', `status` AS 'Status' FROM `project`
+                INNER JOIN `student` ON student.id = project.student
+                INNER JOIN `supervisor` ON supervisor.id = project.supervisor
+                WHERE `student` = ".$_SESSION["id"]
+            );
 
-    <!--Project Container-->
-    <div class="detail-container">
-        <div class="table-detail">
-            <div class="header">
-                <h2>Projects</h2>
-                <button class="btn-1" id="form-popup">Plan Project</button>
+            if ($projects->num_rows == 1){
+                $project = $projects->fetch_assoc();
+                $projectID = $project["ProjectID"];
+                $projectSelected = 1;
+            }
+            else{
+                //Else redirect to select page
+                $projectSelected = 0;
+            }
+        }
+        else {
+            $projectID = $_POST["projectID"];
+            $projects = $con->query(
+                "SELECT project.id AS `ProjectID`, `title` AS 'Title', `description` AS 'Desc', student.name AS 'StudentName', supervisor.name AS 'SupervisorName', `status` AS 'Status' FROM `project`
+                INNER JOIN `student` ON student.id = project.student
+                INNER JOIN `supervisor` ON supervisor.id = project.supervisor
+                WHERE project.id = ".$projectID
+            );
+            
+            if ($project->num_rows != 0){
+                $project = $projects->fetch_assoc();
+                $projectSelected = 1;
+            }
+        }
+        
+        if ($projectSelected == 1){
+            $projectTitle = $project["Title"];
+            $projectDesc = $project["Desc"];
+            $projectSuper = $project["SupervisorName"];
+            $projectStatus = $project["Status"];
+            $projectSelected = 1;
+            $_SESSION["projectID"] = $projectID;
+        }
+        else{
+            header("Location: projectPlanningSelect.php");
+        }
+
+    ?>
+
+
+    <div class='detail-container'>
+        <div class='table-detail'>
+            <div class='header space-bottom'>
+                <h2><?php echo $projectTitle; ?></h2>
+                <button class='btn-1 space-left' id='form-popup'>Plan Project</button>
             </div>
-                <form name="planning-projectSelect" action="php/projectPlanning.php" class="planning-projectSelect" method="POST" autocomplete="off">
-                <table id="proposal-status" class="table-1">
-                    <?php
-                        require_once("projectlist.php");
-                    ?>
-                </form>
+            <div class='full space-bottom'>
+                <div class='left'><h3><?php echo $projectSuper; ?></h3></div>
+                <div class='right'><p>Status: <?php echo $projectStatus; ?></p></div>
+            </div>
+            <div class='space-bottom'>
+                <h3>Description</h3>
+                <p><?php echo $projectDesc; ?></p>
+            </div>
+
+            <table>
+
+                <?php
+                    include("projectplanlist.php");
+                ?>
+
             </table>
+
         </div>
     </div>
 
@@ -45,12 +109,17 @@
                         <input type="text" name="title" placeholder="Title*">
                     </div>
                     <div class="input-field">
-                        <label>Description*<span id="desc-err" class="err message"><img src="../assets/error.svg"></span></label>
+                        <label>Task*<span id="desc-err" class="err message"><img src="../assets/error.svg"></span></label>
                         <textarea name="description" rows="5" cols="50" placeholder="Write your description here*"></textarea>
                     </div>
 
-                    <input type="hidden" name="studentID" value="<?php echo($_SESSION["id"]); ?>">
-                    <input type="hidden" name="supervisorID" value="<?php //TODO!! ?>">
+                    <div class='input-field'>
+                        <label>Period Range*<span id="period-err" class="err message"><img src="../assets/error.svg"></span></label>
+                        <input type="text" name="period_range" value="<?php echo date('m/d/Y') ?> - <?php echo date('m/d/Y') ?>" />
+                    </div>
+
+                    <input type="hidden" name="studentID" value="<?php echo $_SESSION["id"]; ?>">
+                    <input type="hidden" name="supervisorID" value="<?php echo $projectSuper; ?>">
 
                     <div class="form-btn">
                         <input class="btn-1" type="submit" value="submit">
@@ -61,6 +130,17 @@
     </div>
 
     <script>
+
+        $(function() {
+            $('input[name="period_range"]').daterangepicker({
+                showDropdowns: true,
+                autoApply: true,
+            }, function(start, end, label) {
+                //console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            });
+        });
+
+
         $('#form-popup').on('click', function(){
             $('.err').hide();
             $('.form-popup').show();
@@ -87,11 +167,32 @@
                 $('#desc-err').show();
                 err = true;
             }
+            x = f["period_range"].value;
+            const split = x.split(" - ");
+            if (split.length != 2){
+                $('#period-err').show();
+                err = true;
+            }
+            else{
+                function IsDate(date){
+                    try{
+                        return (new Date(date) !== "Invalid Date") && !isNaN(new Date(date));
+                    }catch (e){
+                        console.log(e);
+                    }
+                    return false;
+                }
+                if (!IsDate(split[0]) || !IsDate(split[1])){
+                    $('#period-err').show();
+                    err = true;
+                }
+            }
             return !err;
         }
 
         $('.planning-form').on('submit', function(){
-            return validateForm();
+            let v = validateForm();
+            return false;
         });
 
     </script>
