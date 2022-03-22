@@ -14,32 +14,20 @@
 <body>
     <?php require '../include/user-navbar.inc.php'; ?>
 
-    <button class="btn-1" id="form-popup">Plan Project</button>
 
     <!--Project Container-->
     <div class="detail-container">
         <div class="table-detail">
             <div class="header">
                 <h2>Projects</h2>
+                <button class="btn-1" id="form-popup">Plan Project</button>
             </div>
-            <div class="pagination">
-                <ul>
-                    <li><span class="pagination-btn" value="prev">&larr; Prev</span></li>
-                    <li><span class="pagination-btn" value="1">1</span></li>
-                    <li>...</li>
-                    <li><span class="pagination-btn">13</span></li>
-                    <li><span class="pagination-btn current">14</span></li>
-                    <li><span class="pagination-btn">15</span></li>
-                    <li>...</li>
-                    <li><span class="pagination-btn">20</span></li>
-                    <li><span class="pagination-btn" value="next">&rarr; Next</span></li>
-                </ul>
-            </div>
-            <p>Help pagination thing lmao idk how to do it</p>
-            <table id="proposal-status" class="table-1">
-                <?php
-                    include("projectlist.php");
-                ?>
+                <form name="planning-projectSelect" action="php/projectPlanning.php" class="planning-projectSelect" method="POST" autocomplete="off">
+                <table id="proposal-status" class="table-1">
+                    <?php
+                        require_once("projectlist.php");
+                    ?>
+                </form>
             </table>
         </div>
     </div>
@@ -65,7 +53,7 @@
                     <input type="hidden" name="supervisorID" value="<?php //TODO!! ?>">
 
                     <div class="form-btn">
-                        <input class="btn-1" type="submit" value="propose">
+                        <input class="btn-1" type="submit" value="submit">
                     </div>
                 </form>
             </div>

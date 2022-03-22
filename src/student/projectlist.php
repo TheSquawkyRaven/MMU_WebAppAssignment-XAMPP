@@ -1,7 +1,7 @@
 <?php
 
     $projects = $con->query(
-    "SELECT `title` AS 'Title', `description` AS 'Desc', student.name AS 'StudentName', supervisor.name AS 'SupervisorName', `status` AS 'Status' FROM `project`
+    "SELECT project.id AS `ProjectID`, `title` AS 'Title', `description` AS 'Desc', student.name AS 'StudentName', supervisor.name AS 'SupervisorName', `status` AS 'Status' FROM `project`
     INNER JOIN `student` ON student.id = project.student
     INNER JOIN `supervisor` ON supervisor.id = project.supervisor
     WHERE `student` = ".$_SESSION["id"]
@@ -20,6 +20,7 @@
                 <th>Description</th>
                 <th>Supervisor</th>
                 <th>Status</th>
+                <th>Select</th>
             </tr>
         </thead>
         <tbody>";
@@ -28,6 +29,7 @@
 
         while ($project = $projects->fetch_assoc()){
 
+            $projectID = $project["ProjectID"];
             $title = $project["Title"];
             $desc = $project["Desc"];
             $super = $project["SupervisorName"];
@@ -39,16 +41,15 @@
             <td>$title</td>
             <td>$desc</td>
             <td>$super</td>
-            <td>$status</td>
-            <tr>";
-            echo "<tr>";
+            <td>$status</td>";
+
+            echo "<td><button class='btn-1' id='form-popup' type='submit' name='projectID' value='$projectID'>Select</button></td>";
+            echo "</tr>";
             
             $i++;
         }
 
-        echo
-        "</tbody>
-        ";
+        echo "</tbody>";
     }
 
 ?>
