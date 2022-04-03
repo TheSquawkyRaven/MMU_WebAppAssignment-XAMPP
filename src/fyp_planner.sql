@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2022 at 08:15 AM
+-- Generation Time: Apr 03, 2022 at 05:11 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -77,7 +77,8 @@ INSERT INTO `project` (`id`, `title`, `description`, `status`, `supervisor`, `st
 (38, 'SupervisorB Testing proposal', 'Testing Proposal', 'Pending', 2, NULL),
 (39, 'alskjdlakdjd', 'asd', 'Pending', 1, NULL),
 (41, 'asdeaadade', 'asdasd', 'Pending', 1, NULL),
-(42, 'new project', 'qweqew', 'Pending', 1, NULL);
+(42, 'new project', 'qweqew', 'Pending', 1, NULL),
+(43, 'Title Thing', 'Blah balh fasdfairhtr\r\nweeeeee', '1', 4, 6);
 
 -- --------------------------------------------------------
 
@@ -155,7 +156,9 @@ INSERT INTO `project_meeting` (`id`, `project`, `date`, `time`, `description`) V
 
 CREATE TABLE `project_planning` (
   `id` int(11) NOT NULL,
-  `week` int(3) NOT NULL,
+  `fromdate` date NOT NULL,
+  `todate` date NOT NULL,
+  `title` varchar(50) NOT NULL,
   `description` varchar(50) NOT NULL,
   `project` int(11) NOT NULL,
   `status` varchar(10) NOT NULL COMMENT 'Approved, Pending, Rejected'
@@ -165,10 +168,12 @@ CREATE TABLE `project_planning` (
 -- Dumping data for table `project_planning`
 --
 
-INSERT INTO `project_planning` (`id`, `week`, `description`, `project`, `status`) VALUES
-(1, 1, 'Formulate initial project plan', 34, 'Approved'),
-(2, 2, 'Write up project spec & scope', 34, 'Approved'),
-(3, 12, 'Finish The Report', 34, 'Approved');
+INSERT INTO `project_planning` (`id`, `fromdate`, `todate`, `title`, `description`, `project`, `status`) VALUES
+(1, '0000-00-00', '0000-00-00', '', 'Formulate initial project plan', 34, 'Approved'),
+(2, '0000-00-00', '0000-00-00', '', 'Write up project spec & scope', 34, 'Approved'),
+(3, '0000-00-00', '0000-00-00', '', 'Finish The Report', 34, 'Approved'),
+(7, '2022-04-03', '2022-04-22', 'TTTTTTTTTTTTTT', 'ESDF', 43, 'Approved'),
+(9, '2022-04-30', '2022-05-04', 'Second Thing', 'I shall do more next week please approve :)', 43, 'Rejected');
 
 -- --------------------------------------------------------
 
@@ -204,6 +209,7 @@ CREATE TABLE `student` (
   `password` varchar(72) NOT NULL,
   `name` varchar(50) NOT NULL,
   `dob` date NOT NULL,
+  `projectID` int(11) NOT NULL,
   `state` int(2) NOT NULL COMMENT '1->No Projects yet, 2->Waiting supervisor to approve, 3->Ongoing project, 4->Project Completed '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -211,12 +217,12 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `dob`, `state`) VALUES
-(1, 'test1', '$2y$10$mf2WRYtAZEIvoD92Jf5MyeZW9FLm5Jru0/ti5wN1B1X1MGHsuTeOS', 'Test A', '2022-03-23', 1),
-(2, 'studenta', '$2y$10$Aurp.AUpf//y8JNtnLLIz.LWTjx0d3cIBZXNqM6YBwU3HjrMzSluC', 'Student A', '2022-03-24', 1),
-(3, '123', '$2y$10$/W2w9Xi8XHIZCzez1OWFpOD2y2MKZoeJe/U/O.JsYNSos1gxAWmxe', '123', '0003-03-12', 1),
-(4, '321', '$2y$10$fcjaUTt8OCWwD8NZjvFRN.sFK6f2UCJq.tdti.mbJDj57Ac7rsmWG', '123', '0023-03-12', 1),
-(6, 'AdminStud', '$2y$10$AhI7PSZqisPp75v9IgGgIOjCNiJJYGTISWdx4eeuolYdXWTs7P8V6', 'Admin Student', '0001-01-01', 1);
+INSERT INTO `student` (`id`, `username`, `password`, `name`, `dob`, `projectID`, `state`) VALUES
+(1, 'test1', '$2y$10$mf2WRYtAZEIvoD92Jf5MyeZW9FLm5Jru0/ti5wN1B1X1MGHsuTeOS', 'Test A', '2022-03-23', 0, 1),
+(2, 'studenta', '$2y$10$Aurp.AUpf//y8JNtnLLIz.LWTjx0d3cIBZXNqM6YBwU3HjrMzSluC', 'Student A', '2022-03-24', 0, 1),
+(3, '123', '$2y$10$/W2w9Xi8XHIZCzez1OWFpOD2y2MKZoeJe/U/O.JsYNSos1gxAWmxe', '123', '0003-03-12', 0, 1),
+(4, '321', '$2y$10$fcjaUTt8OCWwD8NZjvFRN.sFK6f2UCJq.tdti.mbJDj57Ac7rsmWG', '123', '0023-03-12', 0, 1),
+(6, 'AdminStud', '$2y$10$AhI7PSZqisPp75v9IgGgIOjCNiJJYGTISWdx4eeuolYdXWTs7P8V6', 'Admin Student', '0001-01-01', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -323,7 +329,7 @@ ALTER TABLE `moderator`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `project_goal`
@@ -347,7 +353,7 @@ ALTER TABLE `project_meeting`
 -- AUTO_INCREMENT for table `project_planning`
 --
 ALTER TABLE `project_planning`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `project_registration`
