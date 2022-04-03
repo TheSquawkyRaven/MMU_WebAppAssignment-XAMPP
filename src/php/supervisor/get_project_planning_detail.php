@@ -3,25 +3,35 @@
 
     $project_id = $_POST['project_id'];
 
-    $sql = $con->query("SELECT * FROM project_planning WHERE project = '$project_id'");
+    $sql = $con->query(
+        "SELECT project_planning.id, project_planning.title, project_planning.description, project_planning.fromdate, project_planning.todate, project_planning.status
+        FROM project_planning WHERE project = '$project_id'
+    ");
 
     $output = '';
 
     $output .= '
                 <thead>
                     <tr>
-                        <td>Weeks</td>
-                        <td>Descriptions</td>
+                        <th>No.</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 ';
     $output .= '<tbody>';
 
     if($sql->num_rows > 0) {
+        $i = 1;
         while($result = $sql->fetch_assoc()) {
             $id = $result['id'];
-            $week = $result['week'];
-            $descrip = $result['description'];
+            $title = $result['title'];
+            $desc = $result['description'];
+            $fromDate = $result['fromdate'];
+            $toDate = $result['todate'];
             $status = $result['status'];
             $output2 = '';
 
@@ -33,11 +43,16 @@
 
             $output .= '
                         <tr>
-                            <td value="'.$id.'">'.$week.'</td>
-                            <td>'.$descrip.'</td>
+                            <td value="'.$id.'">'.$i.'</td>
+                            <td>'.$title.'</td>
+                            <td>'.$desc.'</td>
+                            <td>'.$fromDate.'</td>
+                            <td>'.$toDate.'</td>
+                            <td>'.$status.'</td>
                             '.$output2.'
                         </tr>
                         ';
+            $i++;
         }
 
         $output .= '</tbody>';

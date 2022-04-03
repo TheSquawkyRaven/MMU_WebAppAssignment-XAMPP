@@ -74,7 +74,7 @@
         <div class='table-detail'>
             <div class='header space-bottom'>
                 <h2><?php echo $projectTitle; ?></h2>
-                <button class='btn-1 space-left' id='form-popup'>Plan Project</button>
+                <button class='btn-1 space-left' id='form-popup'>Plan This Project</button>
             </div>
             <div class='full space-bottom'>
                 <div class='left'><h3><?php echo $projectSuper; ?></h3></div>
@@ -85,7 +85,7 @@
                 <p><?php echo $projectDesc; ?></p>
             </div>
 
-            <table>
+            <table class="table-1">
 
                 <?php
                     include("projectplanlist.php");
@@ -114,12 +114,13 @@
                     </div>
 
                     <div class='input-field'>
-                        <label>Period Range*<span id="period-err" class="err message"><img src="../assets/error.svg"></span></label>
+                        <label>Period Range (MM/DD/YYYY)*<span id="period-err" class="err message"><img src="../assets/error.svg"></span></label>
                         <input type="text" name="period_range" value="<?php echo date('m/d/Y') ?> - <?php echo date('m/d/Y') ?>" />
                     </div>
 
                     <input type="hidden" name="studentID" value="<?php echo $_SESSION["id"]; ?>">
                     <input type="hidden" name="supervisorID" value="<?php echo $projectSuper; ?>">
+                    <input type="hidden" name="projectID" value="<?php echo $projectID; ?>">
 
                     <div class="form-btn">
                         <input class="btn-1" type="submit" value="submit">
@@ -162,10 +163,16 @@
                 $('#title-err').show();
                 err = true;
             }
+            else{
+                $('#title-err').hide();
+            }
             x = f["description"].value;
             if (x == ''){
                 $('#desc-err').show();
                 err = true;
+            }
+            else{
+                $('#desc-err').hide();
             }
             x = f["period_range"].value;
             const split = x.split(" - ");
@@ -186,13 +193,16 @@
                     $('#period-err').show();
                     err = true;
                 }
+                else{
+                    $('#period-err').hide();
+                }
             }
             return !err;
         }
 
         $('.planning-form').on('submit', function(){
             let v = validateForm();
-            return false;
+            return v;
         });
 
     </script>
