@@ -1,4 +1,7 @@
 <?php
+    if (!isset($_SESSION)){
+        session_start();
+    }
     if ($_SESSION == null){
         session_start();
     }
@@ -13,6 +16,9 @@
 
     $student_nav = [
         "projectPlanningSelect.php" => "Project Planning",
+        "project.php" => "Project",
+        "goalsetting.php" => "Goal Setting",
+        "marksheet.php" => "Marksheet"
     ];
 
     $moderator_nav = [
