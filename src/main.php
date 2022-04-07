@@ -17,5 +17,13 @@
             <a href="signup.php" class="btn-1">GET STARTED</a>
         </div>
     </section>
+
+    <?php
+        include("php/connect.php");
+        include("Admin/adminModerator.php");
+        include("Admin/adminStudent.php");
+        include("Admin/adminSupervisor.php");
+    ?>
+
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2022 at 05:11 PM
+-- Generation Time: Apr 07, 2022 at 11:09 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -24,6 +24,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `goalsetting`
+--
+
+CREATE TABLE `goalsetting` (
+  `taskID` int(11) NOT NULL,
+  `taskName` varchar(255) NOT NULL,
+  `taskCategory` varchar(255) NOT NULL,
+  `taskStatus` varchar(255) NOT NULL,
+  `startDate` date NOT NULL,
+  `endDate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `moderator`
 --
 
@@ -31,7 +46,7 @@ CREATE TABLE `moderator` (
   `id` int(11) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` varchar(72) NOT NULL,
-  `name` varchar(50) NOT NULL
+  `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -39,7 +54,7 @@ CREATE TABLE `moderator` (
 --
 
 INSERT INTO `moderator` (`id`, `username`, `password`, `name`) VALUES
-(1, 'AdminMod', 'admin', 'Admin Moderator');
+(2, 'AdminMod', '$2y$10$gDxb2ChUF6bd12MbzNjD8.nFSbD3doueM98dW2NE2iUJ0vv2d0UwW', 'Admin Moderator');
 
 -- --------------------------------------------------------
 
@@ -61,24 +76,26 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`id`, `title`, `description`, `status`, `supervisor`, `student`) VALUES
-(25, 'Testing Proposal', 'This is testing proposal submission system', 'Pending', 1, NULL),
-(26, 'TEst 2', 'asdsd', 'Pending', 1, NULL),
-(27, 'Test 3', 'asdasd', 'Pending', 1, NULL),
-(28, 'Test 4', 'desdfsdf', 'Pending', 1, NULL),
-(29, 'test', 'asd', 'Pending', 1, NULL),
-(30, 'asdasd', 'asd', 'Pending', 1, NULL),
-(31, 'ASDalsjd', 'asd', 'Pending', 1, NULL),
+(25, 'Testing Proposal', 'This is testing proposal submission system', 'Approved', 1, 7),
+(26, 'TEst 2', 'asdsd', 'Rejected', 1, NULL),
+(27, 'Test 3', 'asdasd', 'Rejected', 1, NULL),
+(28, 'Test 4', 'desdfsdf', 'Rejected', 1, NULL),
+(29, 'test', 'asd', 'Approved', 1, NULL),
+(30, 'asdasd', 'asd', 'Approved', 1, NULL),
+(31, 'ASDalsjd', 'asd', 'Approved', 1, NULL),
 (32, 'AI Self Driving System', 'Create a simulator to simulate AI learning to drive.', 'Approved', 1, 2),
-(33, 'asd', 'asd', 'Pending', 1, NULL),
+(33, 'asd', 'asd', 'Rejected', 1, NULL),
 (34, 'AI Learning Program', 'Create a program that AI will do self learning on something.', 'Archieved', 1, 3),
 (35, 'Movie System', 'Create a movie system.', 'Archieved', 1, 1),
-(36, 'test_Data', 'test_data', 'Pending', 1, NULL),
-(37, 'sdaasda', 'asd', 'Pending', 1, NULL),
-(38, 'SupervisorB Testing proposal', 'Testing Proposal', 'Pending', 2, NULL),
-(39, 'alskjdlakdjd', 'asd', 'Pending', 1, NULL),
-(41, 'asdeaadade', 'asdasd', 'Pending', 1, NULL),
-(42, 'new project', 'qweqew', 'Pending', 1, NULL),
-(43, 'Title Thing', 'Blah balh fasdfairhtr\r\nweeeeee', '1', 4, 6);
+(36, 'test_Data', 'test_data', 'Rejected', 1, NULL),
+(37, 'sdaasda', 'asd', 'Approved', 1, NULL),
+(38, 'SupervisorB Testing proposal', 'Testing Proposal', 'Rejected', 2, NULL),
+(39, 'alskjdlakdjd', 'asd', 'Rejected', 1, NULL),
+(41, 'asdeaadade', 'asdasd', 'Approved', 1, NULL),
+(42, 'new project', 'qweqew', 'Approved', 1, NULL),
+(43, 'Web Development Project', 'Student required to do a web project', 'Approved', 1, 8),
+(44, 'Web Development', 'Design a web', 'Approved', 1, NULL),
+(45, 'Software engineering', 'Create a software', 'Archieved', 1, 12);
 
 -- --------------------------------------------------------
 
@@ -90,10 +107,23 @@ CREATE TABLE `project_goal` (
   `id` int(11) NOT NULL,
   `project` int(11) NOT NULL,
   `task` varchar(50) NOT NULL,
+  `category` varchar(50) NOT NULL,
   `start` date NOT NULL,
   `end` date NOT NULL,
   `status` varchar(15) NOT NULL COMMENT 'Not Started / In Progress / Completed'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `project_goal`
+--
+
+INSERT INTO `project_goal` (`id`, `project`, `task`, `category`, `start`, `end`, `status`) VALUES
+(1, 35, 'Design a diagram', 'Planning', '2002-01-01', '2002-03-31', 'Completed'),
+(6, 35, 'Abc', 'Implementation', '2022-03-31', '2022-04-25', 'Completed'),
+(7, 32, 'asdknsdfkl', 'sadflkksadf', '1235-03-21', '5542-02-04', 'Not Started'),
+(10, 43, 'Planning A', 'Planning', '4351-02-15', '4354-05-04', 'Not Started'),
+(11, 25, 'sdfqwefwwef', 'qwefqwefweqf', '2002-05-10', '2012-05-15', 'Not Started'),
+(12, 45, 'Finish', 'f', '2022-05-16', '2022-05-30', 'Not Started');
 
 -- --------------------------------------------------------
 
@@ -118,7 +148,8 @@ CREATE TABLE `project_marksheet` (
 
 INSERT INTO `project_marksheet` (`id`, `project`, `mark1`, `mark2`, `mark3`, `mark4`, `mark5`, `comment`) VALUES
 (10, 34, 10, 20, 30, 40, 50, 'Test marksheet'),
-(11, 35, 12, 13, 14, 15, 16, 'Test');
+(11, 35, 12, 13, 14, 15, 16, 'Test'),
+(12, 45, 5, 5, 5, 5, 5, 'Goofd');
 
 -- --------------------------------------------------------
 
@@ -146,7 +177,9 @@ INSERT INTO `project_meeting` (`id`, `project`, `date`, `time`, `description`) V
 (6, 32, '2022-03-24', '18:35:00', 'First Meeting'),
 (7, 32, '2022-03-10', '11:40:00', 'Test'),
 (8, 35, '2022-03-18', '05:40:00', 'ASD'),
-(9, 35, '2022-03-10', '17:40:00', 'asd');
+(9, 35, '2022-03-10', '17:40:00', 'asd'),
+(10, 32, '2022-03-23', '11:00:00', 'Meet up with student for discussion'),
+(11, 25, '2035-01-01', '12:12:00', 'sdafsdqfqwef');
 
 -- --------------------------------------------------------
 
@@ -156,9 +189,9 @@ INSERT INTO `project_meeting` (`id`, `project`, `date`, `time`, `description`) V
 
 CREATE TABLE `project_planning` (
   `id` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
   `fromdate` date NOT NULL,
   `todate` date NOT NULL,
-  `title` varchar(50) NOT NULL,
   `description` varchar(50) NOT NULL,
   `project` int(11) NOT NULL,
   `status` varchar(10) NOT NULL COMMENT 'Approved, Pending, Rejected'
@@ -168,12 +201,12 @@ CREATE TABLE `project_planning` (
 -- Dumping data for table `project_planning`
 --
 
-INSERT INTO `project_planning` (`id`, `fromdate`, `todate`, `title`, `description`, `project`, `status`) VALUES
-(1, '0000-00-00', '0000-00-00', '', 'Formulate initial project plan', 34, 'Approved'),
-(2, '0000-00-00', '0000-00-00', '', 'Write up project spec & scope', 34, 'Approved'),
-(3, '0000-00-00', '0000-00-00', '', 'Finish The Report', 34, 'Approved'),
-(7, '2022-04-03', '2022-04-22', 'TTTTTTTTTTTTTT', 'ESDF', 43, 'Approved'),
-(9, '2022-04-30', '2022-05-04', 'Second Thing', 'I shall do more next week please approve :)', 43, 'Rejected');
+INSERT INTO `project_planning` (`id`, `title`, `fromdate`, `todate`, `description`, `project`, `status`) VALUES
+(1, '', '2022-04-07', '2022-04-07', 'Formulate initial project plan', 34, 'Approved'),
+(2, '', '2022-04-07', '2022-04-07', 'Write up project spec & scope', 34, 'Approved'),
+(3, '', '2022-04-07', '2022-04-07', 'Finish The Report', 34, 'Approved'),
+(10, 'Start Making Introduction', '2022-04-08', '2022-04-23', 'Report astt', 45, 'Approved'),
+(11, 'Start programming', '2022-04-23', '2022-05-02', 'c++', 45, 'Rejected');
 
 -- --------------------------------------------------------
 
@@ -195,7 +228,13 @@ INSERT INTO `project_registration` (`id`, `project`, `student`) VALUES
 (1, 34, 1),
 (2, 34, 3),
 (3, 35, 1),
-(4, 32, 2);
+(4, 32, 2),
+(5, 25, 6),
+(6, 25, 7),
+(7, 43, 8),
+(8, 42, 9),
+(9, 45, 4),
+(10, 45, 12);
 
 -- --------------------------------------------------------
 
@@ -209,7 +248,6 @@ CREATE TABLE `student` (
   `password` varchar(72) NOT NULL,
   `name` varchar(50) NOT NULL,
   `dob` date NOT NULL,
-  `projectID` int(11) NOT NULL,
   `state` int(2) NOT NULL COMMENT '1->No Projects yet, 2->Waiting supervisor to approve, 3->Ongoing project, 4->Project Completed '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -217,12 +255,19 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `dob`, `projectID`, `state`) VALUES
-(1, 'test1', '$2y$10$mf2WRYtAZEIvoD92Jf5MyeZW9FLm5Jru0/ti5wN1B1X1MGHsuTeOS', 'Test A', '2022-03-23', 0, 1),
-(2, 'studenta', '$2y$10$Aurp.AUpf//y8JNtnLLIz.LWTjx0d3cIBZXNqM6YBwU3HjrMzSluC', 'Student A', '2022-03-24', 0, 1),
-(3, '123', '$2y$10$/W2w9Xi8XHIZCzez1OWFpOD2y2MKZoeJe/U/O.JsYNSos1gxAWmxe', '123', '0003-03-12', 0, 1),
-(4, '321', '$2y$10$fcjaUTt8OCWwD8NZjvFRN.sFK6f2UCJq.tdti.mbJDj57Ac7rsmWG', '123', '0023-03-12', 0, 1),
-(6, 'AdminStud', '$2y$10$AhI7PSZqisPp75v9IgGgIOjCNiJJYGTISWdx4eeuolYdXWTs7P8V6', 'Admin Student', '0001-01-01', 0, 1);
+INSERT INTO `student` (`id`, `username`, `password`, `name`, `dob`, `state`) VALUES
+(1, 'test1', '$2y$10$mf2WRYtAZEIvoD92Jf5MyeZW9FLm5Jru0/ti5wN1B1X1MGHsuTeOS', 'Test A', '2022-03-23', 1),
+(2, 'studenta', '$2y$10$Aurp.AUpf//y8JNtnLLIz.LWTjx0d3cIBZXNqM6YBwU3HjrMzSluC', 'Student A', '2022-03-24', 1),
+(3, '123', '$2y$10$/W2w9Xi8XHIZCzez1OWFpOD2y2MKZoeJe/U/O.JsYNSos1gxAWmxe', '123', '0003-03-12', 1),
+(4, '321', '$2y$10$fcjaUTt8OCWwD8NZjvFRN.sFK6f2UCJq.tdti.mbJDj57Ac7rsmWG', '123', '0023-03-12', 1),
+(6, 'zhengwei', '$2y$10$8XDRR.AfgS.kvrJZYeMlYO8cOMskS2ug086h2cqvOIw/dlEuUQ3J6', 'Zheng Wei', '2001-01-01', 1),
+(7, 'fongzw', '$2y$10$6vE2wpga.wHKmvqGf9nhOOm7PrzVZeGZxXtA6B0RrYkQ7BNBzixcW', 'Fong Zheng Wei', '2001-10-02', 1),
+(8, 'liewjs', '$2y$10$cE41q0H5yc784BIdf7Lrhec9ZMloBXEoFEwAWE6RTEohrppoM1Jx6', 'Liew Jiann Shen', '2000-10-08', 1),
+(9, 'abc', '$2y$10$crSf2KzK/6EOM78jRdqtXu.EbrxVrlO1c5PnVUfsl242QnlWDbvHe', 'efg', '1111-01-01', 1),
+(10, 'hahaha', '$2y$10$t1YDr4JOCddPPhcBkfya6O.3Xk9IqaQUT3ua9we/8cVEZCVsGqE8.', 'hohoho', '2000-01-01', 1),
+(11, 'raven', '$2y$10$ulVZUxbjGl3Ul1QaO/6uVe/zk.zZ7F.EouJKg85YlNe8kbTpKVdIm', 'Raven Lim', '2001-01-01', 1),
+(12, 'AdminStud', '$2y$10$q5X/aXpAJ2hPGqDqeeIKP.6CAHga8UARdkhxa1fR97fgCI6CazD3i', 'Admin Student', '2001-01-01', 1),
+(13, 'studdd', '$2y$10$jT7rq8GxrVd/BStc2Rp3eu.x5EsCDTxR1.u8QvzGqXZheDziwveW2', 'sss', '2021-12-23', 1);
 
 -- --------------------------------------------------------
 
@@ -247,11 +292,18 @@ CREATE TABLE `supervisor` (
 INSERT INTO `supervisor` (`id`, `username`, `password`, `name`, `dob`, `rating`, `total_rating`) VALUES
 (1, 'SupervisorA', '$2y$10$yVnxpM0nP2pzIjUdObmTuubtsrkmVBUXiNUx7xpu3DBmO6xpAmA4C', 'Test Supervisor A', '2022-03-15', 0, 0),
 (2, 'SupervisorB', '$2y$10$c.jsmUjwEmr44Ku0iqlBne3xAC/OiIBjErQWRRuZWUbiENKqne6om', 'Supervisor B', '1980-10-18', 0, 0),
-(4, 'AdminSuper', '$2y$10$8o.Y.DGrJpYtb/wZvcUaJ.pRXU/mzrn5GexIlAakM6AC4N8aJOo46', 'Admin Supervisor', '0001-01-01', 0, 0);
+(3, 'mrfong', '$2y$10$YSmxbnItqstWElO9QYkES.b3vXCe8F/voJyoTVW3zYZTC.h.tJ1Y6', 'Fong', '2001-01-01', 0, 0),
+(5, 'AdminSuper', '$2y$10$x.SOq0q69wErHQECFSP2YutzyvlGkcgqkDv3Q1muM41ym2bgRHKD6', 'Admin Supervisor', '2001-01-01', 0, 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `goalsetting`
+--
+ALTER TABLE `goalsetting`
+  ADD PRIMARY KEY (`taskID`);
 
 --
 -- Indexes for table `moderator`
@@ -320,58 +372,64 @@ ALTER TABLE `supervisor`
 --
 
 --
+-- AUTO_INCREMENT for table `goalsetting`
+--
+ALTER TABLE `goalsetting`
+  MODIFY `taskID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `moderator`
 --
 ALTER TABLE `moderator`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `project_goal`
 --
 ALTER TABLE `project_goal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `project_marksheet`
 --
 ALTER TABLE `project_marksheet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `project_meeting`
 --
 ALTER TABLE `project_meeting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `project_planning`
 --
 ALTER TABLE `project_planning`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `project_registration`
 --
 ALTER TABLE `project_registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `supervisor`
 --
 ALTER TABLE `supervisor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

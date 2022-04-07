@@ -46,7 +46,7 @@
                             <td>'.$username.'</td>
                             <td>'.$name.'</td>
                             <td style="display:none;">'.$d.'</td>
-                            <td><button class="btn-1 detail">Detail</button></td>
+                            <td><button class="btn-1 detail">Details</button></td>
                         </tr>
                         ';
         }

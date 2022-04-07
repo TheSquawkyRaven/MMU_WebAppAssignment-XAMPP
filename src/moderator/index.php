@@ -14,7 +14,25 @@
 <body>
     <?php require '../include/user-navbar.inc.php'; ?>
 
-    <h2>MODERATOR: EMPTY</h2>
+    <div class='detail-container'>
+        <div class='table-detail'>
+            <div class='header space-bottom'>
+                <h2>Pending Project Proposals</h2>
+            </div>
+            <table class="table-1">
+
+                <form action="php/updateProposal.php" method="POST">
+
+                    <?php
+                        include("php/pendingProposals.php");
+                    ?>
+
+                </form>
+
+            </table>
+
+        </div>
+    </div>
 
 </body>
 </html>

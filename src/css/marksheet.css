@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,100;1,300;1,900&family=Poppins:wght@400;700&display=swap');
+
+/* general text formatting */
+
+/* Variables */
+:root{
+    --primary-color: #FF6347;
+    --secondary-color: #444444;
+}
+
+body {
+   font-family: 'Open Sans', Arial, sans-serif;
+   font-size: 16px;
+}
+
+
+/* Homepage Navigator Styling */
+
+
+section {
+   background-color: seashell;
+   margin: 1em 4em 1em 4em;
+   border: solid 1pt black;
+
+}
+section h3 {
+  color: black;
+  padding: 0.75rem;
+  background-color: darkorange; 
+}
+
+.status {
+    border-radius: 0.25rem;
+    padding: 3px;
+    color: white;
+    
+}
+
+/* table formatting */
+
+table {
+	margin: 0 auto;
+	width: 90%;
+	color: #666;
+	font-size: 0.85em;
+}
+
+table caption, legend {
+	background-color: salmon; 
+	color: white;
+	font-size: 1rem;
+	padding: 0.5rem;
+	text-align: center;
+}
+
+tr {
+	padding: 0.75rem;
+}
+
+td, th {
+	padding: 0.75rem;
+	text-align: left;
+}
+
+/* form formatting */
+
+form {
+	margin: 0.5em auto;
+	width: 90%;
+}
+
+fieldset{
+	padding: 0 1em 1em 1em;
+}
+
+legend {
+	width: 90%;
+}
+
+label {
+	font-weight: bold;
+}
+
+form p {
+	margin-top: 0.5em;
+}
+
+form input[type="text"], form input[type="date"],form select {
+    font-size: 16px;
+    height: 24px;
+    padding: 3px;
+}
+
+form select {
+    height: 30px;
+}
+
+#task { width: 60% }
+
+.highlight {
+    background-color: #FFE0B2;
+}    
+.error {
+    background: #FFCDD2 url(img/error.png) no-repeat 98% center;
+    box-shadow: 0 0 5px #FF5252;
+    border-color: #FF1744;    
+}
+

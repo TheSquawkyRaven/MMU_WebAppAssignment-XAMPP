@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Goal Setting</title>
+    <title>Project Registration</title>
     <link rel="stylesheet" href="../css/main.css" />
     <script src="../libraries/jquery-3.2.1.min.js"></script>
 </head>
@@ -28,7 +28,7 @@
         <div class="form-container">
             <div class="table-detail">
                 <div class="header">
-                    <h2>Project Detail</h2>
+                    <h2>Project Details</h2>
                     <img class="exit-btn" src="../assets/exit-2.svg" alt="exit">
                 </div>
                 <div class="project-detail">

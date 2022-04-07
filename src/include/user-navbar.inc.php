@@ -6,6 +6,7 @@
         session_start();
     }
     $type = $_SESSION['type'];
+    
 
     $supervisor_nav = [
         "proposal.php" => "Proposal",
@@ -16,7 +17,7 @@
 
     $student_nav = [
         "projectPlanningSelect.php" => "Project Planning",
-        "project.php" => "Project",
+        "projectRegistration.php" => "Project Registration",
         "goalsetting.php" => "Goal Setting",
         "marksheet.php" => "Marksheet"
     ];
@@ -25,9 +26,15 @@
 
     ];
 
-    if ($type == "supervisor") $nav = $supervisor_nav;
-    elseif ($type = "student") $nav = $student_nav;
-    elseif ($type = "moderator") $nav = $moderator_nav;
+    if ($type == "supervisor"){
+        $nav = $supervisor_nav;
+    }
+    elseif ($type == "student"){
+        $nav = $student_nav;
+    } 
+    elseif ($type == "moderator"){
+        $nav = $moderator_nav;
+    }
 
 ?>
 <div class="navbar">
